@@ -1,0 +1,7 @@
+{
+    "presets": [
+        "babel-polyfill",
+        "stage-2",
+        "react"
+    ]
+}
