@@ -25,8 +25,10 @@ const status = [
     }
 ];
 
-export const getListStatus = () => {
-    return Promise.resolve().then(result => status);
+export const getListStatus = (keyword) => {
+    let _status = [];
+    _status = !keyword ? status : status.filter(x => x.Name.startsWith(keyword));
+    return Promise.resolve().then(result => _status);
 };
 
 export const selectStatusById = (Id) => {

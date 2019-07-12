@@ -28,7 +28,7 @@ const config = {
             }, {
                 use: ['style-loader', 'css-loader'],
                 // loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-                test: /\.css$/
+                test: /\.css$|\.scss$/
             }, {
                 loader: 'file-loader',
                 test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.svg$|\.woff$\.woff2$|\.eot$|\.ttf$|\.wav$|\.mp3$|\.ico$/

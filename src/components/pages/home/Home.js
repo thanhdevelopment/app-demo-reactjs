@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {
-    Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
-    Col, Button, Form, FormGroup, Label, Input, FormText
-} from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions/status/Status.Actions';
+import { ListStatus } from './ListStatus';
+import Search from './Search';
+import './styles.css'
 
 class Home extends Component {
     constructor(props) {
@@ -35,47 +35,36 @@ class Home extends Component {
 
         return (
             <div className="app-content__wrapper">
-                <Form>
-                    <FormGroup row>
-                        <Label md={2}>SELECT OPTION:</Label>
-                        <Col md={3}>
-                            <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
-                                <DropdownToggle caret>
-                                    <div style={{ fontSize: "10px", fontWeight: "600", textAlign: "left" }}>STATUS</div>
-                                    <span>{!values.length ? "SELECT OPTION" : values.join(",")}                                    </span>
-                                </DropdownToggle>
-                                <DropdownMenu right style={{ padding: "10px" }}>
-                                    {
-                                        !status ? null : status.map(option => {
-                                            return (
-                                                <div className="form-check" key={option.Id}>
-                                                    <input onClick={() => this.selectItemById(option.Id)} className="form-check-input" type="checkbox"
-                                                        defaultChecked={option.Checked}
-                                                        name={option.Id}
-                                                        value={option.Id} />
-                                                    <label className="form-check-label">{option.Name}</label>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </DropdownMenu>
-                            </Dropdown>
-                        </Col>
-                    </FormGroup>
-
-                    <FormGroup row>
-                        <Label md={2}>result:</Label>
-                        <Col md={3}>
-                            <Input type="result" name="result" disabled
-                                defaultValue={values.join(",")} />
-                        </Col>
-                        <Col md={2}>
-                            <Button onClick={() => this.refreshListStatus()}>Reset</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-
-                <div className="app-list--item__result">
+                <div className="form">
+                    <div className="app-form-group form-group row">
+                        <label className="col-md-2 app--form__label">Search Option:</label>
+                        <div className="col-md-3">
+                            {/* begin::dropdown */}
+                            <div className="dropdown">
+                                <button className="btn btn-outline-light text-dark dropdown-toggle" data-toggle="dropdown">
+                                    <div className="app--label__status">STATUS:</div>
+                                    {!values.length ? "SELECT OPTION" : values.join(",")}
+                                </button>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ margin: "5px 0" }}>
+                                    <Search></Search>
+                                    <ListStatus status={status} selectItemById={this.selectItemById} />
+                                </div>
+                            </div>
+                            {/* end::dropdown */}
+                        </div>
+                    </div>
+                    <div className="app-form-group form-group row">
+                        <label className="col-md-2 app--form__label-disabled">Results:</label>
+                        <div className="col-md-2 form-group">
+                            <input className="form-control" type="text" defaultValue={values.join(",")} disabled />
+                        </div>
+                        <div className="col-md-1">
+                            <button className="btn btn--outline-reset" onClick={() => this.refreshListStatus()}>
+                                <i className="fa fa-refresh"></i>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -97,4 +86,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

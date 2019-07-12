@@ -1,0 +1,62 @@
+.dropdown .dropdown-toggle {
+    width: 90%;
+    text-align: left;
+}
+
+.dropdown .dropdown-toggle .app--label__status {
+    font-size: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.dropdown .dropdown-toggle::after {
+    display: none
+}
+
+.dropdown .dropdown-menu {
+    width: 90%;
+    padding: 0 10px;
+}
+
+.dropdown .dropdown-menu .dropdown--label__status {
+    font-size: 10px;
+    font-weight: bold;
+    color: #f50057;    
+}
+
+.app--form__label {
+    text-align: right;
+    font-weight: bold;
+    font-size: 13px;
+    color: #f50057;
+    line-height: 4;
+}
+
+.app--form__label-disabled {
+    text-align: right;
+    font-weight: bold;
+    font-size: 13px;
+    opacity: .5;
+}
+
+.app-form-group {
+    position: relative;
+}
+
+.app-form-group i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    opacity: .5;
+}
+
+.app-form-group input {
+    padding: 0 30px;
+}
+
+
+button.btn.btn--outline-reset {
+    color: #f50057;
+    text-align: left;
+    line-height: 1.2;
+}

@@ -1,9 +1,9 @@
 import * as Types from '../../constants/status/Status.Constants';
 import * as services from '../../services/status/StatusServices';
 
-export const viewListStatusRequest = () => {
+export const viewListStatusRequest = (keyword) => {
     return (dispatch) => {
-        return services.getListStatus().then(result => {
+        return services.getListStatus(keyword).then(result => {
             return dispatch(viewListStatus(result));
         })
     }
